@@ -18,7 +18,7 @@ module.exports = {
 	},
 	plugins: ["react", "react-hooks"],
 	rules: {
-		"react-in-jsx-scope": false,
+		"react/react-in-jsx-scope": "off",
 		"react-hooks/rules-of-hooks": "error",
 		"react-hooks/exhaustive-deps": "warn",
 	},
