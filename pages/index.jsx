@@ -105,7 +105,7 @@ export default function Home() {
 					.header-right .menu {
 						color: var(--main-color);
 						text-transform: uppercase;
-						font-size: calc(16 * var(--rfs));
+						font-size: calc(32 * var(--rfs));
 						cursor: pointer;
 					}
 
@@ -177,7 +177,7 @@ export default function Home() {
 					.catalog-label {
 						position: absolute;
 						left: 3rem;
-						font-size: calc(16 * var(--rfs));
+						font-size: calc(32 * var(--rfs));
 						text-transform: uppercase;
 					}
 

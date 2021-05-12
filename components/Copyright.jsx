@@ -7,7 +7,7 @@ const Copyright = () => {
 				span {
 					color: var(--main-color);
 					text-transform: uppercase;
-					font-size: calc(16 * var(--rfs));
+					font-size: calc(32 * var(--rfs));
 				}
 			`}</style>
 		</>
