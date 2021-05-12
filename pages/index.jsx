@@ -154,6 +154,7 @@ export default function Home() {
 
 					.footer-right {
 						right: 3vw;
+						transform: rotate(-45deg);
 					}
 
 					.button {
@@ -199,6 +200,9 @@ export default function Home() {
 						z-index: 2;
 						mix-blend-mode: difference;
 						color: #000;
+						font-family: "GT Super", serif;
+						font-size: 10rem;
+						max-width: 70vw;
 					}
 
 					.slider {

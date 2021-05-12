@@ -3,6 +3,11 @@
 	src: url(/fonts/helvetica.ttf);
 }
 
+@font-face {
+	font-family: "GT Super";
+	src: url(/fonts/GT-Super-Display-Bold.ttf);
+}
+
 html {
 	--rfs: calc(0.01 * 10vmin);
 	--main-color: #000000;
