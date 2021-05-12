@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { useEffect, useRef, useState } from "react";
 import Copyright from "../components/Copyright";
 
 const array = [
@@ -31,23 +30,21 @@ const array = [
 ];
 
 export default function Home() {
-	const image = useRef();
+	// const image = useRef();
 
-	const [increment, setIncrement] = useState(0);
+	// useEffect(() => {
+	// 	const time = 5000;
+	// 	let i = 0;
+	// 	setInterval(() => {
+	// 		image.current.style.backgroundImage = `url(${array[i].image})`;
 
-	useEffect(() => {
-		const time = 5000;
-		let i = 0;
-		setInterval(() => {
-			image.current.style.backgroundImage = `url(${array[i].image})`;
-
-			if (i < array.length - 1) {
-				i++;
-			} else {
-				i = 0;
-			}
-		}, time);
-	}, []);
+	// 		if (i < array.length - 1) {
+	// 			i++;
+	// 		} else {
+	// 			i = 0;
+	// 		}
+	// 	}, time);
+	// }, []);
 
 	return (
 		<>
@@ -63,14 +60,14 @@ export default function Home() {
 				</div>
 			</header>
 
-			<main>
+			{/* <main>
 				<div className="typography">
 					<h1>Capturer la lumière de la plus belle des manières</h1>
 				</div>
 				<div className="slider">
 					<a href="#" ref={image}></a>
 				</div>
-			</main>
+			</main> */}
 
 			<footer>
 				<div className="footer-left">
@@ -105,7 +102,7 @@ export default function Home() {
 					.header-right .menu {
 						color: var(--main-color);
 						text-transform: uppercase;
-						font-size: calc(32 * var(--rfs));
+						font-size: clamp(18px, 4vw, 21.44px);
 						cursor: pointer;
 					}
 
@@ -178,7 +175,7 @@ export default function Home() {
 					.catalog-label {
 						position: absolute;
 						left: 3rem;
-						font-size: calc(32 * var(--rfs));
+						font-size: clamp(18px, 4vw, 21.44px);
 						text-transform: uppercase;
 					}
 
