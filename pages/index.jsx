@@ -41,7 +41,7 @@ const Home = () => {
 					text-transform: uppercase;
 					mix-blend-mode: difference;
 					color: #f5f0ed;
-					margin: var(--margin);
+					margin: var(--magnetic-margin);
 				}
 
 				button {
@@ -52,7 +52,7 @@ const Home = () => {
 					outline: none;
 					cursor: pointer;
 					text-transform: uppercase;
-					font-family: "helvetica", sans-serif;
+					font-family: "Knockout", sans-serif;
 				}
 
 				.menu,
@@ -71,7 +71,7 @@ const Home = () => {
 					align-items: center;
 					left: 0;
 					right: 0;
-					margin: var(--margin);
+					margin: var(--magnetic-margin);
 				}
 
 				.footer-left .icon {

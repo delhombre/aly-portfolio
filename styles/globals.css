@@ -14,11 +14,21 @@
 	src: url(/fonts/GT-Super-Display-Bold.ttf);
 }
 
+@font-face {
+	font-family: "Knockout";
+	src: url(/fonts/Knockout.woff2);
+}
+
+@font-face {
+	font-family: "Sang Bleu";
+	src: url(/fonts/SangBleuOGSerif-Light.woff2);
+}
+
 html {
 	--rfs: calc(0.01 * 10vmin);
 	--main-color: #000000;
-	--margin: 3vw;
-	font-family: "helvetica", sans-serif;
+	--magnetic-margin: 5vw;
+	font-family: "Knockout", sans-serif;
 	font-size: 10px;
 }
 
