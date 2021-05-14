@@ -1,4 +1,5 @@
 import Head from "next/head";
+import HomeMain from "../components/HomeMain";
 
 const Home = () => {
 	return (
@@ -13,6 +14,8 @@ const Home = () => {
 					<button className="menu">menu</button>
 				</div>
 			</header>
+
+			<HomeMain />
 
 			<footer>
 				<div className="footer-left">
