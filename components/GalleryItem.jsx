@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { points } from "../utils/datas";
 
 const GalleryItem = ({ src, index, columnOffset }) => {
 	const values = points[index];
+
+	useEffect(() => {
+		console.log(`${index} => ${columnOffset}`);
+	}, [columnOffset, index]);
 
 	if (!values) return null;
 

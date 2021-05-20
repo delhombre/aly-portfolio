@@ -1,4 +1,3 @@
-import LocomotiveScroll from "locomotive-scroll";
 import React, { useEffect, useRef } from "react";
 import { imageData } from "../utils/datas";
 import GalleryItem from "./GalleryItem";
@@ -18,13 +17,13 @@ const HomeMain = () => {
 	const ref = useRef(null);
 
 	useEffect(() => {
-		if (ref) {
-			new LocomotiveScroll({
-				el: ref.current,
-				smooth: true,
-				direction: "horizontal",
-			});
-		}
+		// if (ref) {
+		// 	new LocomotiveScroll({
+		// 		el: ref.current,
+		// 		smooth: true,
+		// 		direction: "horizontal",
+		// 	});
+		// }
 
 		console.log("mounted");
 	}, []);
@@ -49,6 +48,11 @@ const HomeMain = () => {
         padding-right: 50rem;
       }
 
+			.scroll-container{
+				white-space: nowrap;
+				display: inline-block;
+			}
+
       .content{
         display: flex;
         height: 100vh;
@@ -66,7 +70,6 @@ const HomeMain = () => {
         height: 100%;
         position: relative;
         align-items: center;
-        background-color: white;
       }
 
       .typography{
@@ -76,9 +79,11 @@ const HomeMain = () => {
         transform: translate(-50%, -50%);
         text-transform: uppercase;
         font-size: clamp(90px, 6vw, 160px);
-        /* color: rgba(0, 0, 0, 0.2);
-        mix-blend-mode: overlay; */
+        color: #fff;
+        mix-blend-mode: difference;
         z-index: 2;
+				font-family: "Sang Bleu";
+				letter-spacing: 2rem;
       }
       `}</style>
 		</>
