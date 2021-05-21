@@ -1,5 +1,5 @@
 import Head from "next/head";
-import HomeMain from "../components/HomeMain";
+import IndexMain from "../components/IndexMain";
 
 const Home = () => {
 	return (
@@ -15,7 +15,7 @@ const Home = () => {
 				</div>
 			</header>
 
-			<HomeMain />
+			<IndexMain />
 
 			<footer>
 				<div className="footer-left">
@@ -42,8 +42,6 @@ const Home = () => {
 					right: 0;
 					justify-content: flex-end;
 					text-transform: uppercase;
-					mix-blend-mode: difference;
-					color: #f5f0ed;
 					margin: var(--magnetic-margin);
 				}
 
