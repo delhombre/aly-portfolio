@@ -24,20 +24,6 @@
 	src: url(/fonts/SangBleuOGSerif-Light.woff2);
 }
 
-html {
-	--rfs: calc(0.01 * 10vmin);
-	--main-color: #000000;
-	--second-color: #ffffff;
-	--magnetic-margin: 5vw;
-	font-family: "Knockout", sans-serif;
-	font-size: 10px;
-}
-
-a {
-	text-decoration: none;
-	color: currentColor;
-}
-
 *,
 ::before,
 ::after {
@@ -46,86 +32,55 @@ a {
 	box-sizing: border-box;
 }
 
-/*** LOCOMOTIVE SCROLL ***/
-
-html.has-scroll-smooth {
-	overflow: hidden;
-}
-
-html.has-scroll-dragging {
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
-
-.has-scroll-smooth body {
-	overflow: hidden;
-}
-
-.has-scroll-smooth [data-scroll-container] {
+html,
+body {
 	min-height: 100vh;
-}
-
-[data-scroll-direction="horizontal"] [data-scroll-container] {
 	height: 100vh;
-	display: inline-block;
-	white-space: nowrap;
 }
 
-[data-scroll-direction="horizontal"] [data-scroll-section] {
-	display: inline-block;
-	vertical-align: top;
-	white-space: nowrap;
+html {
+	--rfs: calc(0.01 * 10vmin);
+	--main-color: #000000;
+	--second-color: #ffffff;
+	--magnetic-margin: 3vw;
+	font-family: "Knockout", sans-serif;
+	font-size: 10px;
+	touch-action: none;
+	content-zooming: none;
+}
+
+html *::selection {
+	background: var(--main-color);
+	color: var(--second-color);
+}
+
+body {
+	background-color: var(--second-color);
+	display: flex;
+	flex-direction: column;
+	text-rendering: optimizeLegibility;
+	-webkit-text-size-adjust: 100%;
+	-webkit-font-smoothing: antialiased;
+	-webkit-tap-highlight-color: transparent;
+}
+
+body > div {
+	background-color: inherit;
 	height: 100%;
 }
 
-.c-scrollbar {
-	position: absolute;
-	right: 0;
-	top: 0;
-	width: 11px;
-	height: 100%;
-	transform-origin: center right;
-	transition: transform 0.3s, opacity 0.3s;
-	opacity: 0;
-}
-.c-scrollbar:hover {
-	transform: scaleX(1.45);
-}
-.c-scrollbar:hover,
-.has-scroll-scrolling .c-scrollbar,
-.has-scroll-dragging .c-scrollbar {
-	opacity: 1;
-}
-[data-scroll-direction="horizontal"] .c-scrollbar {
-	width: 100%;
-	height: 10px;
-	top: auto;
-	bottom: 0;
-	transform: scaleY(1);
-}
-[data-scroll-direction="horizontal"] .c-scrollbar:hover {
-	transform: scaleY(1.3);
+button {
+	border: none;
+	appearance: none;
+	background: 0, 0;
+	border-radius: 0;
+	outline: none;
+	cursor: pointer;
+	text-transform: uppercase;
+	font-family: "Knockout", sans-serif;
 }
 
-.c-scrollbar_thumb {
-	position: absolute;
-	top: 0;
-	right: 0;
-	background-color: black;
-	opacity: 0.5;
-	width: 7px;
-	border-radius: 10px;
-	margin: 2px;
-	cursor: -webkit-grab;
-	cursor: grab;
-}
-.has-scroll-dragging .c-scrollbar_thumb {
-	cursor: -webkit-grabbing;
-	cursor: grabbing;
-}
-[data-scroll-direction="horizontal"] .c-scrollbar_thumb {
-	right: auto;
-	bottom: 0;
+a {
+	text-decoration: none;
+	color: currentColor;
 }

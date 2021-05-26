@@ -1,7 +1,15 @@
 import Head from "next/head";
+import { useState } from "react";
 import IndexMain from "../components/IndexMain";
+import Menu from "../components/Menu";
 
 const Home = () => {
+	const [isActive, setActive] = useState(false);
+
+	const handleToggleMenu = () => {
+		setActive(!isActive);
+	};
+
 	return (
 		<>
 			<Head>
@@ -9,9 +17,15 @@ const Home = () => {
 				<meta name="description" content="Aly Traoré photographe fototala" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
+			<Menu isActive={isActive} />
 			<header>
 				<div className="header-right">
-					<button className="menu">menu</button>
+					<button
+						className="menu"
+						onClick={handleToggleMenu}
+					>
+						{!isActive ? "menu" : "fermer"}
+					</button>
 				</div>
 			</header>
 
@@ -43,6 +57,7 @@ const Home = () => {
 					justify-content: flex-end;
 					text-transform: uppercase;
 					margin: var(--magnetic-margin);
+					z-index: 3;
 				}
 
 				button {
@@ -73,6 +88,7 @@ const Home = () => {
 					left: 0;
 					right: 0;
 					margin: var(--magnetic-margin);
+					z-index: 3;
 				}
 
 				.footer-left .icon {

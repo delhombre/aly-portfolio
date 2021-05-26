@@ -12,6 +12,11 @@ function MyApp({ Component, pageProps }) {
 					name="viewport"
 					content="width=device-width, user-scalable=no, initial-scale=1, viewport-fit=cover"
 				/>
+				<link rel="preconnect" href="https://fonts.gstatic.com" />
+				<link
+					href="https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap"
+					rel="stylesheet"
+				/>
 			</Head>
 			<Component {...pageProps} />
 		</>
