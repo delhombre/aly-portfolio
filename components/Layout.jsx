@@ -1,6 +1,4 @@
-import React from "react";
-
-const Layout = ({ children }) => {
+const Layout = () => {
 	return (
 		<>
 			<header>
@@ -25,8 +23,6 @@ const Layout = ({ children }) => {
 				</a>
 			</div>
 
-			{children}
-
 			<style jsx>{`
 				header {
 					position: fixed;
@@ -43,7 +39,6 @@ const Layout = ({ children }) => {
 					user-select: none;
 					pointer-events: none;
 					z-index: 3;
-					font-weight: bold;
 					font-size: clamp(1.5rem, 4vw, 2.2rem);
 				}
 
@@ -53,7 +48,6 @@ const Layout = ({ children }) => {
 				}
 
 				.menu button {
-					font-weight: bold;
 					font-size: clamp(1.5rem, 4vw, 2.2rem);
 					color: var(--second-color);
 				}
@@ -79,8 +73,8 @@ const Layout = ({ children }) => {
 					--scaleX: 2;
 					--scaleY: 2;
 					position: absolute;
-					width: 4px;
-					height: 4px;
+					width: 3px;
+					height: 3px;
 					border-radius: 50%;
 					top: 50%;
 					left: 50%;

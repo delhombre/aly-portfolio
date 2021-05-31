@@ -36,6 +36,8 @@ html,
 body {
 	min-height: 100vh;
 	height: 100vh;
+	touch-action: none;
+	content-zooming: none;
 }
 
 html {
@@ -45,8 +47,6 @@ html {
 	--magnetic-margin: 3vw;
 	font-family: "Knockout", sans-serif;
 	font-size: 10px;
-	touch-action: none;
-	content-zooming: none;
 }
 
 html *::selection {
@@ -55,7 +55,7 @@ html *::selection {
 }
 
 body {
-	background-color: var(--second-color);
+	background-color: #f5f0ed;
 	display: flex;
 	flex-direction: column;
 	text-rendering: optimizeLegibility;
@@ -83,4 +83,30 @@ button {
 a {
 	text-decoration: none;
 	color: currentColor;
+}
+
+.container-section {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	grid-template-rows: repeat(12, 1fr);
+}
+
+.top-image {
+	grid-area: 6/4 / span 3 / span 2;
+	transform: rotate(-25deg);
+	z-index: 1;
+	transform-origin: bottom;
+}
+.bottom-image {
+	grid-area: 5/8 / span 3 / span 2;
+
+	z-index: 1;
+	transform: rotate(25deg);
+	transform-origin: bottom center;
+}
+
+.main-image {
+	grid-area: 4/5 / span 6 / span 4;
+	position: relative;
+	z-index: 2;
 }
