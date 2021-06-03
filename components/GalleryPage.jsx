@@ -370,7 +370,7 @@ window.addEventListener("resize", onResize);
 const GalleryPage = () => {
 	useEffect(() => {
 		init();
-	});
+	}, []);
 
 	return (
 		<>
