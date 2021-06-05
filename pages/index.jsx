@@ -11,7 +11,7 @@ const Section = ({ name, imageSrc, reference }) => {
 					<div className="title-container">
 						<div className="title">
 							<div className="stroked">
-								<h1>Oeuvres récents</h1>
+								<h1>Oeuvres récentes</h1>
 								<span>01</span>
 							</div>
 							<div className="filled">
