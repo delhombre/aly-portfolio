@@ -147,6 +147,7 @@ const Section = ({ name, imageSrc, reference }) => {
 						bottom: 3.5rem;
 						mix-blend-mode: difference;
 						color: var(--second-color);
+						font-weight: normal;
 					}
 
 					.fototala {
@@ -169,6 +170,10 @@ const Section = ({ name, imageSrc, reference }) => {
 
 						.filled {
 							top: 4%;
+						}
+
+						.name {
+							bottom: 25%;
 						}
 					}
 				`}
