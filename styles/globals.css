@@ -10,6 +10,12 @@
 }
 
 @font-face {
+	font-family: "helvetica neue";
+	src: url(/fonts/HelveticaNeue.ttc);
+	font-weight: bold;
+}
+
+@font-face {
 	font-family: "GT Super";
 	src: url(/fonts/GT-Super-Display-Bold.ttf);
 }
@@ -84,3 +90,33 @@ a {
 	text-decoration: none;
 	color: currentColor;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-size: inherit;
+	margin-block-start: 0px;
+	margin-block-end: 0px;
+	font-weight: normal;
+}
+/* 
+.image {
+	transform: scale(1) rotate(-30deg);
+	transform-origin: 350% 0;
+}
+
+.image.active {
+	transform: scale(1.1) translateX(30%) rotate(0);
+}
+
+.image.out {
+	transform: scale(1) rotate(0);
+}
+
+.image.active,
+.image.out {
+	transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+} */
