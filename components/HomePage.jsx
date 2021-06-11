@@ -14,8 +14,6 @@ const HomePage = () => {
 		const secondImages = document.querySelectorAll("#second-image");
 		const imageNumbers = document.querySelectorAll("#image-number");
 
-		console.log(secondImages);
-
 		let index = 0,
 			last = 0;
 		const aminationDuration = 1000;
@@ -23,8 +21,6 @@ const HomePage = () => {
 		mainRef.current.addEventListener("wheel", (e) => {
 			const delta = e.wheelDelta;
 			const now = new Date().getTime();
-
-			console.log(`event: ${e}\ndelta: ${delta}\nnow:${now}`);
 
 			if (now - last < aminationDuration) {
 				e.preventDefault();
@@ -137,6 +133,134 @@ const HomePage = () => {
 				});
 			}
 			last = now;
+		});
+
+		let touch, startY, distY, startTime, elapsedTime;
+
+		mainRef.current.addEventListener("touchstart", (e) => {
+			touch = e.changedTouches[0];
+			startY = touch.pageY;
+			startTime = new Date().getTime(); // record time when finger first makes contact with surface
+			e.preventDefault();
+		});
+		mainRef.current.addEventListener("touchmove", (e) => {
+			e.preventDefault();
+		});
+		mainRef.current.addEventListener("touchend", (e) => {
+			touch = e.changedTouches[0];
+			distY = touch.pageY - startY; // get vertical dist traveled by finger while in contact with surface
+			elapsedTime = new Date().getTime() - startTime;
+
+			if (elapsedTime < aminationDuration) {
+				e.preventDefault();
+				return;
+			}
+
+			if (distY < 0) {
+				if (index >= mainImages.length - 1) return;
+
+				index++;
+
+				mainImages.forEach((image, i) => {
+					if (i === index) {
+						gsap.to(imageNumbers[i - 1], { translateY: "-100%" });
+						gsap.fromTo(
+							imageNumbers[i],
+							{ translateY: "100%" },
+							{ translateY: 0 }
+						);
+
+						gsap.to(secondImages[i - 1], {
+							translateX: "100%",
+							duration: 1,
+							delay: 0,
+						});
+
+						gsap.fromTo(
+							secondImages[i],
+							{
+								translateX: "-100%",
+							},
+							{ translateX: 0, duration: 1, delay: 0, scale: 1 }
+						);
+
+						gsap.to(mainImages[i - 1], {
+							scale: 0.9,
+							duration: 1.5,
+							opacity: 0,
+							ease: "cubic-bezier(0.645,0.045,0.355,1)",
+							delay: 0,
+						});
+
+						gsap.fromTo(
+							image,
+							{
+								transform: "scale(0.9) rotate(-30deg)",
+								transformOrigin: "350% 0",
+							},
+							{
+								transform: "scale(1) rotate(0)",
+								opacity: 1,
+								duration: 1,
+								ease: "cubic-bezier(0.645,0.045,0.355,1)",
+								delay: 0,
+							}
+						);
+					}
+				});
+			} else {
+				if (index <= 0) return;
+
+				index--;
+
+				mainImages.forEach((image, i) => {
+					if (i === index) {
+						gsap.to(imageNumbers[i + 1], { translateY: "100%" });
+						gsap.fromTo(
+							imageNumbers[i],
+							{ translateY: "-100%" },
+							{ translateY: 0 }
+						);
+
+						gsap.to(secondImages[i + 1], {
+							translateX: "-100%",
+							duration: 1,
+							delay: 0,
+						});
+
+						gsap.fromTo(
+							secondImages[i],
+							{
+								translateX: "100%",
+							},
+							{ translateX: 0, duration: 1, delay: 0, scale: 1 }
+						);
+
+						gsap.to(mainImages[i + 1], {
+							scale: 1.1,
+							duration: 1.5,
+							opacity: 0,
+							ease: "cubic-bezier(0.645,0.045,0.355,1)",
+							delay: 0,
+						});
+
+						gsap.fromTo(
+							image,
+							{
+								transform: "scale(0.9) rotate(-30deg)",
+								transformOrigin: "350% 0",
+							},
+							{
+								transform: "scale(1) rotate(0)",
+								opacity: 1,
+								duration: 1,
+								ease: "cubic-bezier(0.645,0.045,0.355,1)",
+								delay: 0,
+							}
+						);
+					}
+				});
+			}
 		});
 	}, []);
 
