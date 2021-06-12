@@ -136,19 +136,18 @@ const HomePage = () => {
 		});
 
 		let touch, startY, distY, startTime, elapsedTime;
+		const threshold = 100;
 
 		mainRef.current.addEventListener("touchstart", (e) => {
 			touch = e.changedTouches[0];
-			startY = touch.pageY;
+			startY = touch.clientY;
 			startTime = new Date().getTime(); // record time when finger first makes contact with surface
 			e.preventDefault();
 		});
-		mainRef.current.addEventListener("touchmove", (e) => {
-			e.preventDefault();
-		});
+
 		mainRef.current.addEventListener("touchend", (e) => {
 			touch = e.changedTouches[0];
-			distY = touch.pageY - startY; // get vertical dist traveled by finger while in contact with surface
+			distY = touch.clientY - startY; // get vertical dist traveled by finger while in contact with surface
 			elapsedTime = new Date().getTime() - startTime;
 
 			if (elapsedTime < aminationDuration) {
@@ -261,6 +260,8 @@ const HomePage = () => {
 					}
 				});
 			}
+
+			e.preventDefault();
 		});
 	}, []);
 
