@@ -30,6 +30,11 @@
 	src: url(/fonts/SangBleuOGSerif-Light.woff2);
 }
 
+@font-face {
+	font-family: "aly";
+	src: url(/fonts/untitled-sans-web-regular.woff2);
+}
+
 *,
 ::before,
 ::after {
@@ -41,7 +46,7 @@
 html,
 body {
 	min-height: 100vh;
-	height: 100vh;
+	height: 100%;
 	touch-action: none;
 	content-zooming: none;
 }
@@ -56,14 +61,14 @@ html {
 }
 
 html *::selection {
-	background: var(--main-color);
+	background: #ede6e0;
 	color: var(--second-color);
 }
 
 body {
 	background-color: #f5f0ed;
-	display: flex;
-	flex-direction: column;
+	/* display: flex;
+	flex-direction: column; */
 	text-rendering: optimizeLegibility;
 	-webkit-text-size-adjust: 100%;
 	-webkit-font-smoothing: antialiased;
