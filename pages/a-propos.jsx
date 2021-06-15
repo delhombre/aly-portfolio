@@ -149,10 +149,10 @@ export default function About() {
 						<div className="infinite-text-wrapper">
 							<div className="infinite-text-container">
 								<div className="infinite-text">
-									Capturer la lumière de la plus belle des manières.
+									Capturer la lumière de la plus belle des manières.&nbsp;
 								</div>
 								<div className="infinite-text">
-									Capturer la lumière de la plus belle des manières.
+									Capturer la lumière de la plus belle des manières.&nbsp;
 								</div>
 							</div>
 						</div>

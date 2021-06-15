@@ -47,7 +47,7 @@ html,
 body {
 	min-height: 100vh;
 	height: 100%;
-	touch-action: none;
+	/* touch-action: none; */
 	content-zooming: none;
 }
 
