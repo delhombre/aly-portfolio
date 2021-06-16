@@ -1,5 +1,7 @@
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import Image from "next/image";
+import { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 import Layout from "../components/Layout";
 
 const banner = {
@@ -30,6 +32,16 @@ const letterAni = {
 	},
 };
 
+const lineAni = {
+	initial: { x: "-101%" },
+	animate: { x: 0 },
+};
+
+const infiniteContainerAni = {
+	initial: { opacity: 0, y: "100%" },
+	animate: { opacity: 1, y: 0, transition: { duration: 1 } },
+};
+
 const AnimatedLetters = ({ text }) => {
 	return (
 		<>
@@ -54,13 +66,13 @@ const ContactAnimatedLetters = ({ text }) => {
 	);
 };
 
-const BiographyText = ({ text }) => {
+const BiographyText = ({ text, animation }) => {
 	return (
 		<>
 			<motion.span
 				variants={banner}
 				initial="initial"
-				animate="animate"
+				animate={animation}
 				className="text-content"
 			>
 				<motion.span variants={letterAni} className="text">
@@ -71,27 +83,49 @@ const BiographyText = ({ text }) => {
 	);
 };
 
+const useAnimateOnInView = () => {
+	const animation = useAnimation();
+	const { ref, inView } = useInView();
+
+	useEffect(() => {
+		if (inView) {
+			animation.start("animate");
+		}
+		// if (!inView) {
+		// 	animation.start("initial");
+		// }
+	}, [animation, inView]);
+
+	return { ref, animation };
+};
+
 export default function About() {
+	const { ref: section1, animation: animation1 } = useAnimateOnInView();
+	const { ref: section2, animation: animation2 } = useAnimateOnInView();
+	const { ref: section3, animation: animation3 } = useAnimateOnInView();
+	const { ref: section4, animation: animation4 } = useAnimateOnInView();
+	const { ref: section5, animation: animation5 } = useAnimateOnInView();
+
 	return (
 		<>
 			<Layout />
 
 			<main>
-				<section className="section-1">
-					<motion.h1 variants={banner} initial="initial" animate="animate">
+				<section className="section-1" ref={section1}>
+					<motion.h1 variants={banner} initial="initial" animate={animation1}>
 						<AnimatedLetters text="mon" />
 						<br />
 						<AnimatedLetters text="profil" />
 					</motion.h1>
 				</section>
-				<section className="section-2">
+				<section className="section-2" ref={section2}>
 					<div className="container">
 						<div className="information-wrapper">
 							<div className="information-container">
 								<motion.div
 									variants={banner}
 									initial="initial"
-									animate="animate"
+									animate={animation2}
 									className="information"
 								>
 									<ContactAnimatedLetters text="Contact:" />
@@ -102,7 +136,7 @@ export default function About() {
 								<motion.div
 									variants={banner}
 									initial="initial"
-									animate="animate"
+									animate={animation2}
 									className="information"
 								>
 									<ContactAnimatedLetters text="entreprise:" />
@@ -111,7 +145,7 @@ export default function About() {
 								<motion.div
 									variants={banner}
 									initial="initial"
-									animate="animate"
+									animate={animation2}
 									className="information"
 								>
 									<ContactAnimatedLetters text=">Photographie:" />
@@ -127,73 +161,120 @@ export default function About() {
 						</div>
 					</div>
 				</section>
-				<section className="section-3">
+				<section className="section-3" ref={section3}>
 					<div className="container">
 						<div className="description">
-							<motion.h2 variants={banner} initial="initial" animate="animate">
+							<motion.h2
+								variants={banner}
+								initial="initial"
+								animate={animation3}
+							>
 								<motion.span variants={letterAni}>Profil</motion.span>
 							</motion.h2>
 							<p>
 								<motion.span
 									variants={banner}
 									initial="initial"
-									animate="animate"
+									animate={animation3}
 									className="text-content"
 								>
 									<motion.span variants={letterAni} className="text text-1">
 										Lorem, ipsum dolor.
 									</motion.span>
 								</motion.span>
-								<BiographyText text="Lorem ipsum dolor sit amet consectetur." />
-								<BiographyText text="Lorem ipsum dolor sit amet, consectetur adipisici," />
-								<BiographyText text="Lorem ipsum dolor sit amet, consectetur," />
-								<BiographyText text="Lorem ipsum dolor sit amet, consectetur," />
-								<BiographyText text="Lorem ipsum dolor sit amet, consectetur," />
-								<BiographyText text="Lorem ipsum dolor sit amet, consectetur," />
-								<BiographyText text="Lorem ipsum dolor sit amet, consectetur," />
-								<BiographyText text="Lorem ipsum dolor sit amet, consectetur," />
-								<BiographyText text="Lorem ipsum dolor sit amet, consectetur," />
-								<BiographyText text="Lorem ipsum dolor sit." />
+								<BiographyText
+									animation={animation3}
+									text="Lorem ipsum dolor sit amet consectetur."
+								/>
+								<BiographyText
+									animation={animation3}
+									text="Lorem ipsum dolor sit amet, consectetur adipisici,"
+								/>
+								<BiographyText
+									animation={animation3}
+									text="Lorem ipsum dolor sit amet, consectetur,"
+								/>
+								<BiographyText
+									animation={animation3}
+									text="Lorem ipsum dolor sit amet, consectetur,"
+								/>
+								<BiographyText
+									animation={animation3}
+									text="Lorem ipsum dolor sit amet, consectetur,"
+								/>
+								<BiographyText
+									animation={animation3}
+									text="Lorem ipsum dolor sit amet, consectetur,"
+								/>
+								<BiographyText
+									animation={animation3}
+									text="Lorem ipsum dolor sit amet, consectetur,"
+								/>
+								<BiographyText
+									animation={animation3}
+									text="Lorem ipsum dolor sit amet, consectetur,"
+								/>
+								<BiographyText
+									animation={animation3}
+									text="Lorem ipsum dolor sit amet, consectetur,"
+								/>
+								<BiographyText
+									animation={animation3}
+									text="Lorem ipsum dolor sit."
+								/>
 							</p>
 						</div>
 					</div>
 				</section>
-				<section className="section-4">
+				<section className="section-4" ref={section4}>
 					<div className="container">
-						<span className="madeIn">Réalisé à</span>
+						<motion.span
+							variants={letterAni}
+							initial="initial"
+							animate={animation4}
+							className="madeIn"
+						>
+							Réalisé à
+						</motion.span>
 						<motion.div
 							variants={bamako}
 							initial="initial"
-							animate="animate"
+							animate={animation4}
 							className="bamako"
 						>
 							<AnimatedLetters text="Bamako" />
 						</motion.div>
 					</div>
 				</section>
-
-				<section className="section-5">
+				<section className="section-5" ref={section5}>
 					<div className="container">
 						<div className="top-line">
 							<motion.div
-								initial={{ x: "-101%" }}
-								animate={{ x: 0 }}
+								variants={lineAni}
+								initial="initial"
+								animate={animation5}
 							></motion.div>
 						</div>
 						<div className="infinite-text-wrapper">
-							<div className="infinite-text-container">
+							<motion.div
+								variants={infiniteContainerAni}
+								initial="initial"
+								animate={animation5}
+								className="infinite-text-container"
+							>
 								<div className="infinite-text">
 									Capturer la lumière de la plus belle des manières.&nbsp;
 								</div>
 								<div className="infinite-text">
 									Capturer la lumière de la plus belle des manières.&nbsp;
 								</div>
-							</div>
+							</motion.div>
 						</div>
 						<div className="bottom-line">
 							<motion.div
-								initial={{ x: "-101%" }}
-								animate={{ x: 0 }}
+								variants={lineAni}
+								initial="initial"
+								animate={animation5}
 							></motion.div>
 						</div>
 					</div>
@@ -405,7 +486,7 @@ export default function About() {
 					height: 100%;
 					background: var(--main-color);
 					opacity: 0.8;
-					transition-property: transform, background;
+					transition-property: transform;
 					transition-duration: 2s;
 					transform-origin: left;
 					transition-timing-function: cubic-bezier(0.03, 0.15, 0.16, 0.99),
@@ -420,6 +501,8 @@ export default function About() {
 				.infinite-text-container {
 					display: flex;
 					align-items: center;
+					transition-timing-function: cubic-bezier(0.03, 0.15, 0.16, 0.99),
+						cubic-bezier(0.215, 0.61, 0.355, 1);
 				}
 
 				.infinite-text {
