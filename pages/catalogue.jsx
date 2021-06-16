@@ -138,6 +138,18 @@ const Catalogue = () => {
 					top: 50%;
 					transform: translate(-50%, -50%);
 				}
+
+				@media screen and (max-width: 768px) {
+					.container {
+						perspective: 1000px;
+					}
+				}
+
+				@media screen and (max-width: 480px) {
+					.container {
+						perspective: 500px;
+					}
+				}
 			`}</style>
 		</>
 	);

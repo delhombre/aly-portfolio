@@ -35,6 +35,37 @@
 	src: url(/fonts/untitled-sans-web-regular.woff2);
 }
 
+:root {
+	--cs: 13.7;
+	--dw: 1920;
+	--ps: 55;
+	--ph: 55;
+	--bi: 70;
+	--sc: calc((var(--dw) / 100) * var(--cs));
+	--fs: 13.7vw;
+	--vh: 9.04px;
+}
+
+@media screen and (max-width: 768px) {
+	:root {
+		--cs: 21.6;
+		--dw: 455;
+		--ps: 24;
+		--ph: 20;
+		--bi: 20;
+		--vh: 6.78px;
+		--fs: 21.6vw;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	:root {
+		--cs: 10;
+		--dw: 414;
+		--fs: 10vw;
+	}
+}
+
 *,
 ::before,
 ::after {
