@@ -1,5 +1,75 @@
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Layout from "../components/Layout";
+
+const banner = {
+	animate: {
+		transition: {
+			delayChildren: 0.4,
+			staggerChildren: 0.2,
+		},
+	},
+};
+
+const bamako = {
+	animate: {
+		transition: {
+			staggerChildren: 0.4,
+		},
+	},
+};
+
+const letterAni = {
+	initial: { y: "100%" },
+	animate: {
+		y: 0,
+		transition: {
+			ease: [0.215, 0.61, 0.355, 1],
+			duration: 1,
+		},
+	},
+};
+
+const AnimatedLetters = ({ text }) => {
+	return (
+		<>
+			{[...text].map((letter, index) => (
+				<span key={index} className="letter-wrapper">
+					<motion.span variants={letterAni} className="letter">
+						{letter}
+					</motion.span>
+				</span>
+			))}
+		</>
+	);
+};
+
+const ContactAnimatedLetters = ({ text }) => {
+	return (
+		<>
+			<span className="contact">
+				<motion.div variants={letterAni}>{text}</motion.div>
+			</span>
+		</>
+	);
+};
+
+const BiographyText = ({ text }) => {
+	return (
+		<>
+			<motion.span
+				variants={banner}
+				initial="initial"
+				animate="animate"
+				className="text-content"
+			>
+				<motion.span variants={letterAni} className="text">
+					{text}
+				</motion.span>
+			</motion.span>
+		</>
+	);
+};
 
 export default function About() {
 	return (
@@ -8,57 +78,46 @@ export default function About() {
 
 			<main>
 				<section className="section-1">
-					<h1>
-						{["M", "o", "n"].map((l, index) => (
-							<span key={index} className="letter-wrapper">
-								<span className="letter">{l}</span>
-							</span>
-						))}{" "}
+					<motion.h1 variants={banner} initial="initial" animate="animate">
+						<AnimatedLetters text="mon" />
 						<br />
-						{["p", "r", "o", "f", "i", "l"].map((l, index) => (
-							<span key={index} className="letter-wrapper">
-								<span className="letter">{l}</span>
-							</span>
-						))}
-					</h1>
+						<AnimatedLetters text="profil" />
+					</motion.h1>
 				</section>
 				<section className="section-2">
 					<div className="container">
 						<div className="information-wrapper">
 							<div className="information-container">
-								<div className="information">
-									<span className="contact">
-										<div>CONTACT:</div>
-									</span>
-									<span className="contact">
-										<div>BAMAKO, ML</div>
-									</span>
-									<span className="contact">
-										<div>+223 72.19.46.67</div>
-									</span>
-									<span className="contact">
-										<div>ALYRHT@GMAIL.COM</div>
-									</span>
-								</div>
-								<div className="information">
-									<span className="contact">
-										<div>entreprise:</div>
-									</span>
-									<span className="contact">
-										<div>gnagassadesign</div>
-									</span>
-								</div>
-								<div className="information">
-									<span className="contact">
-										<div>Photographie:</div>
-									</span>
-									<span className="contact">
-										<div>{"toto l'asticot"}</div>
-									</span>
-									<span className="contact">
-										<div>{"maya l'abeille"}</div>
-									</span>
-								</div>
+								<motion.div
+									variants={banner}
+									initial="initial"
+									animate="animate"
+									className="information"
+								>
+									<ContactAnimatedLetters text="Contact:" />
+									<ContactAnimatedLetters text="BAMAKO, ML" />
+									<ContactAnimatedLetters text="+223 72.19.46.67" />
+									<ContactAnimatedLetters text="ALYRHT@GMAIL.COM" />
+								</motion.div>
+								<motion.div
+									variants={banner}
+									initial="initial"
+									animate="animate"
+									className="information"
+								>
+									<ContactAnimatedLetters text="entreprise:" />
+									<ContactAnimatedLetters text="gnagassadesign" />
+								</motion.div>
+								<motion.div
+									variants={banner}
+									initial="initial"
+									animate="animate"
+									className="information"
+								>
+									<ContactAnimatedLetters text=">Photographie:" />
+									<ContactAnimatedLetters text="toto l'asticot" />
+									<ContactAnimatedLetters text="maya l'abeille" />
+								</motion.div>
 							</div>
 						</div>
 						<div className="profile-image-wrapper">
@@ -71,59 +130,30 @@ export default function About() {
 				<section className="section-3">
 					<div className="container">
 						<div className="description">
-							<h2>
-								<span>Profil</span>
-							</h2>
+							<motion.h2 variants={banner} initial="initial" animate="animate">
+								<motion.span variants={letterAni}>Profil</motion.span>
+							</motion.h2>
 							<p>
-								<span className="text-content">
-									<span className="text text-1">Lorem, ipsum dolor.</span>
-								</span>
-								<span className="text-content">
-									<span className="text">
-										Lorem ipsum dolor sit amet consectetur.
-									</span>
-								</span>
-								<span className="text-content">
-									<span className="text">
-										Lorem ipsum dolor sit amet, consectetur adipisicing.
-									</span>
-								</span>
-								<span className="text-content">
-									<span className="text">
-										Lorem ipsum dolor sit amet consectetur adipisicing.
-									</span>
-								</span>
-								<span className="text-content">
-									<span className="text">
-										Lorem ipsum dolor sit amet consectetur adipisicing.
-									</span>
-								</span>
-								<span className="text-content">
-									<span className="text">
-										Lorem ipsum dolor sit amet consectetur adipisicing.
-									</span>
-								</span>
-								<span className="text-content">
-									<span className="text">
-										Lorem ipsum dolor sit amet consectetur.
-									</span>
-								</span>
-								<span className="text-content">
-									<span className="text">
-										Lorem ipsum dolor sit amet consectetur adipisicing.
-									</span>
-								</span>
-								<span className="text-content">
-									<span className="text">
-										Lorem ipsum dolor sit amet consectetur adipisicing.
-									</span>
-								</span>
-								<span className="text-content">
-									<span className="text">Lorem ipsum dolor sit amet.</span>
-								</span>
-								<span className="text-content">
-									<span className="text">Lorem, ipsum dolor.</span>
-								</span>
+								<motion.span
+									variants={banner}
+									initial="initial"
+									animate="animate"
+									className="text-content"
+								>
+									<motion.span variants={letterAni} className="text text-1">
+										Lorem, ipsum dolor.
+									</motion.span>
+								</motion.span>
+								<BiographyText text="Lorem ipsum dolor sit amet consectetur." />
+								<BiographyText text="Lorem ipsum dolor sit amet, consectetur adipisici," />
+								<BiographyText text="Lorem ipsum dolor sit amet, consectetur," />
+								<BiographyText text="Lorem ipsum dolor sit amet, consectetur," />
+								<BiographyText text="Lorem ipsum dolor sit amet, consectetur," />
+								<BiographyText text="Lorem ipsum dolor sit amet, consectetur," />
+								<BiographyText text="Lorem ipsum dolor sit amet, consectetur," />
+								<BiographyText text="Lorem ipsum dolor sit amet, consectetur," />
+								<BiographyText text="Lorem ipsum dolor sit amet, consectetur," />
+								<BiographyText text="Lorem ipsum dolor sit." />
 							</p>
 						</div>
 					</div>
@@ -131,20 +161,24 @@ export default function About() {
 				<section className="section-4">
 					<div className="container">
 						<span className="madeIn">Réalisé à</span>
-						<div className="bamako">
-							{["B", "a", "m", "a", "k", "o"].map((l, index) => (
-								<span key={index} className="letter-wrapper">
-									<span className="letter">{l}</span>
-								</span>
-							))}{" "}
-						</div>
+						<motion.div
+							variants={bamako}
+							initial="initial"
+							animate="animate"
+							className="bamako"
+						>
+							<AnimatedLetters text="Bamako" />
+						</motion.div>
 					</div>
 				</section>
 
 				<section className="section-5">
 					<div className="container">
 						<div className="top-line">
-							<div></div>
+							<motion.div
+								initial={{ x: "-101%" }}
+								animate={{ x: 0 }}
+							></motion.div>
 						</div>
 						<div className="infinite-text-wrapper">
 							<div className="infinite-text-container">
@@ -157,7 +191,10 @@ export default function About() {
 							</div>
 						</div>
 						<div className="bottom-line">
-							<div></div>
+							<motion.div
+								initial={{ x: "-101%" }}
+								animate={{ x: 0 }}
+							></motion.div>
 						</div>
 					</div>
 				</section>
@@ -185,7 +222,7 @@ export default function About() {
 				</footer>
 			</main>
 
-			<style jsx>{`
+			<style jsx global>{`
 				main {
 					background: inherit;
 					--cs: 13.7;
@@ -218,7 +255,7 @@ export default function About() {
 
 				.letter-wrapper {
 					display: inline-flex;
-					margin-left: calc((-13.96 / var(--sc)) * var(--fs));
+					/*margin-left: calc((-13.96 / var(--sc)) * var(--fs));*/
 					position: relative;
 					overflow: hidden;
 				}
@@ -368,9 +405,8 @@ export default function About() {
 					height: 100%;
 					background: var(--main-color);
 					opacity: 0.8;
-					/*transform: translate3d(-101%, 0, 0);*/
 					transition-property: transform, background;
-					transition-duration: 1s;
+					transition-duration: 2s;
 					transform-origin: left;
 					transition-timing-function: cubic-bezier(0.03, 0.15, 0.16, 0.99),
 						cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -471,9 +507,9 @@ export default function About() {
 						font-size: calc((71 / var(--sc)) * var(--fs));
 					}
 
-					.letter-wrapper {
+					/*.letter-wrapper {
 						margin-left: calc((-2.8 / var(--sc)) * var(--fs));
-					}
+					}*/
 
 					.section-2 {
 						margin-bottom: calc((106 / var(--sc)) * var(--fs));

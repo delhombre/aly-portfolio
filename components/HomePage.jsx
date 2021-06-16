@@ -142,7 +142,7 @@ const HomePage = () => {
 			touch = e.changedTouches[0];
 			startY = touch.clientY;
 			startTime = new Date().getTime(); // record time when finger first makes contact with surface
-			e.preventDefault();
+			// e.preventDefault();
 		});
 
 		mainRef.current.addEventListener("touchend", (e) => {
@@ -261,7 +261,7 @@ const HomePage = () => {
 				});
 			}
 
-			e.preventDefault();
+			// e.preventDefault();
 		});
 	}, []);
 
