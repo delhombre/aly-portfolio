@@ -95,7 +95,7 @@ const Catalogue = () => {
 			<div className="stage">
 				<div className="container">
 					<div className="ring">
-						<div className="img"></div>
+						<div className="img">Lorem ipsum dolor sit amet.</div>
 						<div className="img"></div>
 						<div className="img"></div>
 						<div className="img"></div>
@@ -125,6 +125,7 @@ const Catalogue = () => {
 				.stage {
 					overflow: hidden;
 					background: #000;
+					position: relative;
 				}
 				div,
 				svg {
