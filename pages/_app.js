@@ -7,31 +7,19 @@ function MyApp({ Component, pageProps }) {
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		const timer = () => {
-			return setTimeout(() => {
-				document.querySelector(".counter").style.setProperty("--num", 100);
-			}, 1000);
-		};
+		const timer = setTimeout(() => {
+			document.querySelector(".counter").style.setProperty("--num", 100);
+		}, 1000);
 
-		timer();
-
-		return () => {
-			clearTimeout(timer);
-		};
+		return () => clearTimeout(timer);
 	}, []);
 
 	useEffect(() => {
-		const timer = () => {
-			return setTimeout(() => {
-				setLoading((l) => !l);
-			}, 5000);
-		};
+		const timer = setTimeout(() => {
+			setLoading((l) => !l);
+		}, 4000);
 
-		timer();
-
-		return () => {
-			clearTimeout(timer);
-		};
+		return () => clearTimeout(timer);
 	}, []);
 
 	return (

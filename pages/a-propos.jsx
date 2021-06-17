@@ -7,7 +7,7 @@ import Layout from "../components/Layout";
 const banner = {
 	animate: {
 		transition: {
-			delayChildren: 0.1,
+			delayChildren: 0.05,
 			staggerChildren: 0.2,
 		},
 	},
@@ -131,7 +131,7 @@ export default function About() {
 									<ContactAnimatedLetters text="Contact:" />
 									<ContactAnimatedLetters text="BAMAKO, ML" />
 									<ContactAnimatedLetters text="+223 72.19.46.67" />
-									<ContactAnimatedLetters text="ALYRHT@GMAIL.COM" />
+									<ContactAnimatedLetters text="ALYTRHT@GMAIL.COM" />
 								</motion.div>
 								<motion.div
 									variants={banner}
