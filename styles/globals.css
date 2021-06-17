@@ -35,6 +35,11 @@
 	src: url(/fonts/untitled-sans-web-regular.woff2);
 }
 
+@font-face {
+	font-family: "Khatija Calligraphy";
+	src: url(/fonts/Khatija-Calligraphy.ttf);
+}
+
 :root {
 	--cs: 13.7;
 	--dw: 1920;

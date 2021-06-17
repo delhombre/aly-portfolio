@@ -7,7 +7,7 @@ import Layout from "../components/Layout";
 const banner = {
 	animate: {
 		transition: {
-			delayChildren: 0.4,
+			delayChildren: 0.1,
 			staggerChildren: 0.2,
 		},
 	},
@@ -148,7 +148,7 @@ export default function About() {
 									animate={animation2}
 									className="information"
 								>
-									<ContactAnimatedLetters text=">Photographie:" />
+									<ContactAnimatedLetters text="Photographie:" />
 									<ContactAnimatedLetters text="toto l'asticot" />
 									<ContactAnimatedLetters text="maya l'abeille" />
 								</motion.div>
