@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useState } from "react";
 import Menu from "./Menu";
 
@@ -30,16 +31,20 @@ const Layout = () => {
 					</button>
 				</div>
 				<div className="catalog">
-					<a href="#">Catalogue</a>
+					<Link href="/catalogue">
+						<a>Catalogue</a>
+					</Link>
 				</div>
 			</header>
 			<div className="gallery">
-				<a href="#" className="icon">
-					<span className="dot"></span>
-					<span className="dot"></span>
-					<span className="dot"></span>
-					<span className="dot"></span>
-				</a>
+				<Link href="/gallerie">
+					<a className="icon">
+						<span className="dot"></span>
+						<span className="dot"></span>
+						<span className="dot"></span>
+						<span className="dot"></span>
+					</a>
+				</Link>
 			</div>
 
 			<style jsx>{`
@@ -85,6 +90,7 @@ const Layout = () => {
 					height: 24px;
 					position: relative;
 					display: block;
+					transform: rotate(90deg);
 				}
 
 				.dot {

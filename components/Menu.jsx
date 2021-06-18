@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const Menu = () => {
@@ -8,15 +9,15 @@ const Menu = () => {
 					<nav className="nav">
 						<div className="home">
 							<div className="number">01</div>
-							<a href="#" className="link">
-								Acceuil
-							</a>
+							<Link href="/">
+								<a className="link">Acceuil</a>
+							</Link>
 						</div>
 						<div className="about">
 							<div className="number">02</div>
-							<a href="#" className="link">
-								À propos
-							</a>
+							<Link href="/a-propos">
+								<a className="link">À propos</a>
+							</Link>
 						</div>
 						<div className="appointment">
 							<div className="number">03</div>
