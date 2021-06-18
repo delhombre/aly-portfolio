@@ -1,10 +1,10 @@
 import React from "react";
-import Loader from "../components/Loader";
+import Menu from "../components/Menu";
 
 const text = () => {
 	return (
 		<>
-			<Loader />
+			<Menu />
 		</>
 	);
 };

@@ -1,13 +1,32 @@
+import { useState } from "react";
+import Menu from "./Menu";
+
 const Layout = () => {
+	const [isActive, setIsActive] = useState(false);
+
 	return (
 		<>
+			{isActive && <Menu />}
 			<header>
 				<div className="menu">
-					<button>
-						<span className="single">m</span>
-						<span className="single">e</span>
-						<span className="single">n</span>
-						<span className="single">u</span>
+					<button onClick={() => setIsActive((a) => !a)}>
+						{!isActive ? (
+							<>
+								{[..."Menu"].map((letter, index) => (
+									<span key={index} className="single">
+										{letter}
+									</span>
+								))}
+							</>
+						) : (
+							<>
+								{[..."Fermer"].map((letter, index) => (
+									<span key={index} className="single">
+										{letter}
+									</span>
+								))}
+							</>
+						)}
 					</button>
 				</div>
 				<div className="catalog">
@@ -38,7 +57,7 @@ const Layout = () => {
 					color: var(--second-color);
 					user-select: none;
 					pointer-events: none;
-					z-index: 3;
+					z-index: 9999;
 					font-size: clamp(1.5rem, 4vw, 2.2rem);
 				}
 
@@ -56,7 +75,7 @@ const Layout = () => {
 					position: fixed;
 					left: var(--magnetic-margin);
 					bottom: var(--magnetic-margin);
-					z-index: 3;
+					z-index: 9999;
 					mix-blend-mode: difference;
 					user-select: none;
 				}
