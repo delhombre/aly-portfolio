@@ -1,16 +1,87 @@
+import { motion } from "framer-motion";
 import Link from "next/link";
 import React from "react";
+
+const transition = { ease: [0.215, 0.61, 0.355, 1], duration: 1 };
+
+const menuWrapper = {
+	initial: {
+		y: "-100%",
+		// borderBottomLeftRadius: "60%",
+		// borderBottomRightRadius: "60%",
+		// backgroundColor: "var(--main-color)",
+	},
+
+	animate: {
+		y: 0,
+		// borderRadius: 0,
+	},
+
+	exit: {
+		// webkitMaskImage:
+		// 	"radial-gradient(circle at bottom, transparent 0, transparent 25%, black 0px)",
+		y: "-100%",
+	},
+};
+
+const link = {
+	animate: {
+		transition: {
+			staggerChildren: 0.2,
+		},
+	},
+	exit: {
+		transition: {
+			staggerChildren: 0.2,
+			staggerDirection: -1,
+		},
+	},
+};
+
+const letterAnimation = {
+	initial: { y: "100%" },
+	animate: { y: 0 },
+	exit: { y: "100%" },
+};
+
+const AnimatedLetters = ({ word }) => {
+	return (
+		<>
+			{[...word].map((letter, index) => (
+				<motion.span variants={letterAnimation} key={index}>
+					{letter}
+				</motion.span>
+			))}
+		</>
+	);
+};
 
 const Menu = () => {
 	return (
 		<>
-			<div className="menu-wrapper">
+			<motion.div
+				key="menu"
+				variants={menuWrapper}
+				initial="initial"
+				animate="animate"
+				exit="exit"
+				transition={transition}
+				className="menu-wrapper"
+			>
 				<div className="menu-container">
 					<nav className="nav">
 						<div className="home">
 							<div className="number">01</div>
 							<Link href="/">
-								<a className="link">Acceuil</a>
+								<motion.a
+									variants={link}
+									animate="animate"
+									exit="exit"
+									transition={transition}
+									className="link"
+								>
+									<AnimatedLetters word="Accueil" />
+								</motion.a>
 							</Link>
 						</div>
 						<div className="about">
@@ -36,10 +107,11 @@ const Menu = () => {
 						<a href="#">Twitter</a>
 					</div>
 				</div>
-			</div>
-			<style jsx>{`
+			</motion.div>
+
+			<style jsx global>{`
 				.menu-wrapper {
-					position: absolute;
+					position: fixed;
 					left: 0;
 					right: 0;
 					top: 0;
@@ -94,6 +166,13 @@ const Menu = () => {
 					-webkit-text-stroke: 1px var(--second-color);
 					-webkit-text-fill-color: var(--main-color);
 					transition: 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+					display: block;
+					white-space: pre;
+					overflow: hidden;
+				}
+
+				.link span {
+					display: inline-block;
 				}
 
 				.link:hover {

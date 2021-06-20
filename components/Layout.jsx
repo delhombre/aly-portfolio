@@ -1,3 +1,4 @@
+import { AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
 import Menu from "./Menu";
@@ -7,7 +8,7 @@ const Layout = () => {
 
 	return (
 		<>
-			{isActive && <Menu />}
+			<AnimatePresence>{isActive && <Menu />}</AnimatePresence>
 			<header>
 				<div className="menu">
 					<button onClick={() => setIsActive((a) => !a)}>
