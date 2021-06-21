@@ -90,6 +90,15 @@ const HomePage = () => {
 			</main>
 
 			<style jsx global>{`
+				html {
+					height: 100%;
+				}
+
+				body {
+					min-height: auto;
+					overflow-y: scroll;
+				}
+
 				main {
 					position: fixed;
 					top: 0;

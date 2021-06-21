@@ -156,7 +156,11 @@ export default function About() {
 						</div>
 						<div className="profile-image-wrapper">
 							<div className="profile-image">
-								<Image src="/images/1/lg.jpg" layout="fill" objectFit="cover" />
+								<Image
+									src="/images/about/aly.jpg"
+									layout="fill"
+									objectFit="cover"
+								/>
 							</div>
 						</div>
 					</div>
