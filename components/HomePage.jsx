@@ -78,8 +78,6 @@ const HomePage = () => {
 		window.addEventListener("mousemove", function (ev) {
 			showcase.onMouseMove(ev);
 		});
-
-		// PreventPullDownRefresh();
 	}, []);
 
 	return (
