@@ -49,6 +49,11 @@ const Contact = () => {
 					font-size: calc((16 / var(--sc)) * var(--fs));
 					overscroll-behavior: contain;
 					overflow: hidden;
+					position: fixed;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
 				}
 
 				.section {
