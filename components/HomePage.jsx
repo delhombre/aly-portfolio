@@ -92,10 +92,11 @@ const HomePage = () => {
 			<style jsx global>{`
 				html {
 					height: 100%;
+					min-height: initial;
 				}
 
 				body {
-					min-height: auto;
+					min-height: initial;
 					overflow-y: scroll;
 				}
 
