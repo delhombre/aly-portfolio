@@ -78,6 +78,8 @@ const HomePage = () => {
 		window.addEventListener("mousemove", function (ev) {
 			showcase.onMouseMove(ev);
 		});
+
+		// PreventPullDownRefresh();
 	}, []);
 
 	return (
@@ -103,6 +105,7 @@ const HomePage = () => {
 					position: relative;
 					justify-content: flex-start;
 					align-items: center;
+					overscroll-behavior: contain;
 				}
 
 				canvas {
@@ -117,6 +120,7 @@ const HomePage = () => {
 					text-transform: uppercase;
 					font-size: calc((18 / var(--sc)) * var(--fs));
 					color: var(--second-color);
+					mix-blend-mode: difference;
 				}
 
 				.slides {

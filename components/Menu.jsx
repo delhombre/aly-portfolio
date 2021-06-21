@@ -92,9 +92,9 @@ const Menu = () => {
 						</div>
 						<div className="appointment">
 							<div className="number">03</div>
-							<a href="#" className="link">
-								RDV
-							</a>
+							<Link href="/prendre-rendez-vous">
+								<a className="link">RDV</a>
+							</Link>
 						</div>
 					</nav>
 					<div className="social-medias">
