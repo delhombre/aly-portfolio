@@ -1,463 +1,214 @@
-import { gsap } from "gsap";
-import Head from "next/head";
-import Image from "next/image";
 import { useEffect, useRef } from "react";
+import image1 from "../public/images/home/1.jpg";
+import image2 from "../public/images/home/2.jpg";
+import image3 from "../public/images/home/3.jpg";
+import image4 from "../public/images/home/4.jpg";
+import image5 from "../public/images/home/5.jpg";
+import image6 from "../public/images/home/6.jpg";
+import { Showcase } from "../utils/Showcase";
+import { Slides } from "../utils/Slides";
 import Layout from "./Layout";
 
-const HomePage = () => {
-	const mainRef = useRef(null);
+const slidesData = [
+	{
+		image: image1,
+		title: "Dame1",
+		meta: "Korofina / Bamako",
+	},
+	{
+		image: image2,
+		title: "Dame2",
+		meta: "Hippodrome / Bamako",
+	},
+	{
+		image: image3,
+		title: "Dame3",
+		meta: "Moribabougou / Koulikoro",
+	},
+	{
+		image: image4,
+		title: "Monsieur1",
+		meta: "Cité du Niger / Bamako",
+	},
+	{
+		image: image5,
+		title: "Dame4",
+		meta: "Missira / Bamako",
+	},
+	{
+		image: image6,
+		title: "Dame5",
+		meta: "Hippodrome / Bamako",
+	},
+];
 
-	const urls = ["/images/1/lg.jpg", "/images/2/lg.jpg", "/images/3/lg.jpg"];
+const HomePage = () => {
+	const containerRef = useRef(null);
 
 	useEffect(() => {
-		const mainImages = document.querySelectorAll("#main-image");
-		const secondImages = document.querySelectorAll("#second-image");
-		const imageNumbers = document.querySelectorAll("#image-number");
-
-		let index = 0,
-			last = 0;
-		const aminationDuration = 1000;
-
-		mainRef.current.addEventListener("wheel", (e) => {
-			const delta = e.wheelDelta;
-			const now = new Date().getTime();
-
-			if (now - last < aminationDuration) {
-				e.preventDefault();
-				return;
-			}
-
-			if (delta < 0) {
-				if (index >= mainImages.length - 1) return;
-
-				index++;
-
-				mainImages.forEach((image, i) => {
-					if (i === index) {
-						gsap.to(imageNumbers[i - 1], { translateY: "-100%" });
-						gsap.fromTo(
-							imageNumbers[i],
-							{ translateY: "100%" },
-							{ translateY: 0 }
-						);
-
-						gsap.to(secondImages[i - 1], {
-							translateX: "100%",
-							duration: 1,
-							delay: 0,
-						});
-
-						gsap.fromTo(
-							secondImages[i],
-							{
-								translateX: "-100%",
-							},
-							{ translateX: 0, duration: 1, delay: 0, scale: 1 }
-						);
-
-						gsap.to(mainImages[i - 1], {
-							scale: 0.9,
-							duration: 1.5,
-							opacity: 0,
-							ease: "cubic-bezier(0.645,0.045,0.355,1)",
-							delay: 0,
-						});
-
-						gsap.fromTo(
-							image,
-							{
-								transform: "scale(0.9) rotate(-30deg)",
-								transformOrigin: "350% 0",
-							},
-							{
-								transform: "scale(1) rotate(0)",
-								opacity: 1,
-								duration: 1,
-								ease: "cubic-bezier(0.645,0.045,0.355,1)",
-								delay: 0,
-							}
-						);
-					}
-				});
-			} else {
-				if (index <= 0) return;
-
-				index--;
-
-				mainImages.forEach((image, i) => {
-					if (i === index) {
-						gsap.to(imageNumbers[i + 1], { translateY: "100%" });
-						gsap.fromTo(
-							imageNumbers[i],
-							{ translateY: "-100%" },
-							{ translateY: 0 }
-						);
-
-						gsap.to(secondImages[i + 1], {
-							translateX: "-100%",
-							duration: 1,
-							delay: 0,
-						});
-
-						gsap.fromTo(
-							secondImages[i],
-							{
-								translateX: "100%",
-							},
-							{ translateX: 0, duration: 1, delay: 0, scale: 1 }
-						);
-
-						gsap.to(mainImages[i + 1], {
-							scale: 1.1,
-							duration: 1.5,
-							opacity: 0,
-							ease: "cubic-bezier(0.645,0.045,0.355,1)",
-							delay: 0,
-						});
-
-						gsap.fromTo(
-							image,
-							{
-								transform: "scale(0.9) rotate(-30deg)",
-								transformOrigin: "350% 0",
-							},
-							{
-								transform: "scale(1) rotate(0)",
-								opacity: 1,
-								duration: 1,
-								ease: "cubic-bezier(0.645,0.045,0.355,1)",
-								delay: 0,
-							}
-						);
-					}
-				});
-			}
-			last = now;
+		const container = containerRef.current;
+		const slides = new Slides(slidesData);
+		const showcase = new Showcase(slidesData, {
+			onActiveIndexChange: (activeIndex) => {
+				slides.onActiveIndexChange(activeIndex);
+			},
+			onIndexChange: (index) => {
+				slides.onMove(index);
+			},
+			onZoomOutStart: () => {
+				// cursor.enter();
+				slides.appear();
+			},
+			onZoomOutFinish: () => {},
+			onFullscreenStart: ({ activeIndex }) => {
+				// cursor.leave();
+				slides.disperse(activeIndex);
+			},
+			onFullscreenFinish: () => {},
 		});
 
-		let touch, startY, distY, startTime, elapsedTime;
-		const threshold = 100;
+		showcase.mount(container);
+		slides.mount(container);
+		showcase.render();
 
-		mainRef.current.addEventListener("touchstart", (e) => {
-			touch = e.changedTouches[0];
-			startY = touch.clientY;
-			startTime = new Date().getTime(); // record time when finger first makes contact with surface
-			// e.preventDefault();
+		window.addEventListener("resize", function () {
+			showcase.onResize();
 		});
 
-		mainRef.current.addEventListener("touchend", (e) => {
-			touch = e.changedTouches[0];
-			distY = touch.clientY - startY; // get vertical dist traveled by finger while in contact with surface
-			elapsedTime = new Date().getTime() - startTime;
-
-			if (elapsedTime < aminationDuration) {
-				e.preventDefault();
-				return;
-			}
-
-			if (distY < 0) {
-				if (index >= mainImages.length - 1) return;
-
-				index++;
-
-				mainImages.forEach((image, i) => {
-					if (i === index) {
-						gsap.to(imageNumbers[i - 1], { translateY: "-100%" });
-						gsap.fromTo(
-							imageNumbers[i],
-							{ translateY: "100%" },
-							{ translateY: 0 }
-						);
-
-						gsap.to(secondImages[i - 1], {
-							translateX: "100%",
-							duration: 1,
-							delay: 0,
-						});
-
-						gsap.fromTo(
-							secondImages[i],
-							{
-								translateX: "-100%",
-							},
-							{ translateX: 0, duration: 1, delay: 0, scale: 1 }
-						);
-
-						gsap.to(mainImages[i - 1], {
-							scale: 0.9,
-							duration: 1.5,
-							opacity: 0,
-							ease: "cubic-bezier(0.645,0.045,0.355,1)",
-							delay: 0,
-						});
-
-						gsap.fromTo(
-							image,
-							{
-								transform: "scale(0.9) rotate(-30deg)",
-								transformOrigin: "350% 0",
-							},
-							{
-								transform: "scale(1) rotate(0)",
-								opacity: 1,
-								duration: 1,
-								ease: "cubic-bezier(0.645,0.045,0.355,1)",
-								delay: 0,
-							}
-						);
-					}
-				});
-			} else {
-				if (index <= 0) return;
-
-				index--;
-
-				mainImages.forEach((image, i) => {
-					if (i === index) {
-						gsap.to(imageNumbers[i + 1], { translateY: "100%" });
-						gsap.fromTo(
-							imageNumbers[i],
-							{ translateY: "-100%" },
-							{ translateY: 0 }
-						);
-
-						gsap.to(secondImages[i + 1], {
-							translateX: "-100%",
-							duration: 1,
-							delay: 0,
-						});
-
-						gsap.fromTo(
-							secondImages[i],
-							{
-								translateX: "100%",
-							},
-							{ translateX: 0, duration: 1, delay: 0, scale: 1 }
-						);
-
-						gsap.to(mainImages[i + 1], {
-							scale: 1.1,
-							duration: 1.5,
-							opacity: 0,
-							ease: "cubic-bezier(0.645,0.045,0.355,1)",
-							delay: 0,
-						});
-
-						gsap.fromTo(
-							image,
-							{
-								transform: "scale(0.9) rotate(-30deg)",
-								transformOrigin: "350% 0",
-							},
-							{
-								transform: "scale(1) rotate(0)",
-								opacity: 1,
-								duration: 1,
-								ease: "cubic-bezier(0.645,0.045,0.355,1)",
-								delay: 0,
-							}
-						);
-					}
-				});
-			}
-
-			// e.preventDefault();
+		window.addEventListener("mousemove", function (ev) {
+			showcase.onMouseMove(ev);
 		});
 	}, []);
 
 	return (
 		<>
-			<Head>
-				<title>Aly Traoré | Acceuil</title>
-			</Head>
 			<Layout />
 
-			<main ref={mainRef}>
-				<section>
-					<div className="container">
-						<div className="title-container">
-							<h1 className="title">Œuvres Récentes</h1>
-							<div className="number-wrapper">
-								{" 0"}
-								<span className="indexes">
-									<span>&nbsp;&nbsp;</span>
-									{urls.map((url, index) => (
-										<span
-											className={`image-number ${index === 0 ? "active" : ""}`}
-											key={`number-${index + 1}`}
-											id="image-number"
-										>
-											{index + 1}
-										</span>
-									))}
-								</span>
-							</div>
-						</div>
-						<div className="grid">
-							<div className="main-image-container">
-								<div className="main-image">
-									{urls.map((url, index) => (
-										<Image
-											key={index}
-											src={url}
-											layout="fill"
-											objectFit="contain"
-											className={`image ${index === 0 ? "active" : ""}`}
-											id="main-image"
-										/>
-									))}
-								</div>
-							</div>
-							<div className="second-image-container">
-								<div className="second-image">
-									{urls.map((url, index) => (
-										<Image
-											key={index}
-											src={url}
-											layout="fill"
-											objectFit="contain"
-											className={`image ${index === 0 ? "active" : ""}`}
-											id="second-image"
-										/>
-									))}
-								</div>
-							</div>
-						</div>
-						<div className="name">
-							<h2>Prince Akachi</h2>
-						</div>
-					</div>
-					<div className="fototala">fototala</div>
-				</section>
+			<main ref={containerRef}>
+				{/* <div className="container"></div> */}
+				<p className="clickAndDrag">Cliquez et faîtes défiler.</p>
 			</main>
 
 			<style jsx global>{`
 				main {
-					height: 100%;
-					width: 100%;
+					position: fixed;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
 					overflow: hidden;
-				}
-
-				section {
+					background-color: var(--main-color);
 					display: flex;
-					justify-content: center;
-					align-items: center;
-					height: 100%;
-					width: 100%;
-				}
-
-				.container {
-					max-width: calc(100% - (var(--magnetic-margin) * 2));
-					height: 80%;
-					width: 100%;
-					position: relative;
-				}
-
-				.title-container {
-					font-family: "helvetica";
-					font-size: 11vw;
-					position: absolute;
-					max-width: 100%;
-					width: 100%;
-					z-index: 2;
-				}
-
-				.title {
-					-webkit-text-fill-color: transparent;
-					-webkit-text-stroke-width: 1px;
-					-webkit-text-stroke-color: rgba(119, 136, 153, 1);
-				}
-
-				.indexes {
-					display: inline-flex;
 					flex-direction: column;
 					position: relative;
-					line-height: 1.05;
-					overflow: hidden;
+					justify-content: flex-start;
+					align-items: center;
 				}
 
-				.image-number {
-					position: absolute;
-					transform: translateY(100%);
-					transition: transform 1s ease;
-					will-change: transform;
-					backface-visibility: hidden;
+				canvas {
+					user-select: none;
 				}
 
-				.image-number.active {
-					transform: translateY(0);
-				}
-
-				.grid {
-					display: grid;
-					grid-template-columns: repeat(16, 1fr);
-					width: 100%;
-					height: 100%;
-				}
-
-				.main-image-container {
-					grid-row-start: 1;
-					grid-column-start: 3;
-					grid-column-end: 12;
-					position: relative;
-				}
-
-				.image {
-					transform: scale(0);
-					will-change: transform, opacity;
-				}
-
-				.image.active {
-					transform: scale(1);
-				}
-
-				.main-image {
-					position: absolute;
-					top: 50%;
-					width: 100%;
-					height: 80%;
-					transform: translateY(-50%);
-				}
-
-				.second-image-container {
-					grid-column-start: 13;
-					grid-column-end: 17;
-					position: relative;
-				}
-
-				.second-image {
-					position: relative;
-					height: 40%;
-				}
-
-				.name {
-					font-family: "helvetica";
-					font-size: calc(64 * var(--rfs));
-					position: absolute;
-					max-width: 100%;
-					width: 100%;
-					z-index: 2;
-					bottom: 3.5rem;
-					mix-blend-mode: difference;
-					color: var(--second-color);
-					font-weight: normal;
-				}
-
-				.fototala {
+				.clickAndDrag {
 					position: absolute;
 					bottom: var(--magnetic-margin);
-					right: var(--magnetic-margin);
-					font-size: 8vw;
-					font-family: "helvetica";
-					-webkit-text-fill-color: white;
-					-webkit-text-stroke-width: 1px;
-					-webkit-text-stroke-color: black;
+					left: 50%;
+					transform: translateX(-50%);
 					text-transform: uppercase;
+					font-size: calc((18 / var(--sc)) * var(--fs));
+					color: var(--second-color);
+				}
+
+				.slides {
+					position: absolute;
+					top: 50%;
+					padding: 0 10vw;
+					width: 100%;
+					max-width: 100%;
+					user-select: none;
+				}
+
+				.slide {
+					display: flex;
+					flex-direction: column;
+					align-items: flex-start;
+					width: 100%;
+					max-width: 1200px;
+					margin: 0 auto;
+					height: 33vh;
+					color: var(--second-color);
+					transform: translateY(-50%);
+					transition: transform 1300ms cubic-bezier(0.2, 1, 0.3, 1),
+						opacity 500ms cubic-bezier(0.2, 1, 0.3, 1);
+				}
+
+				.slide-meta {
+					margin: 0;
+					font-size: 1.35rem;
+					-webkit-font-smoothing: antialiased;
+					-moz-osx-font-smoothing: grayscale;
+				}
+
+				.slide-meta,
+				.slide-more {
+					opacity: 0;
+					transition: opacity 900ms cubic-bezier(0.2, 1, 0.3, 1);
+				}
+
+				.show-meta .slide-meta,
+				.show-meta .slide-more {
+					opacity: 1;
+					transition: opacity 1500ms 300ms cubic-bezier(0.2, 1, 0.3, 1);
+				}
+
+				.slide-more {
+					border-bottom: 1px solid;
+				}
+
+				.slide-more:hover {
+					border-bottom: 1px solid transparent;
+				}
+
+				.slide-title {
+					font-size: 10vw;
+					margin: 0;
+					color: #fafafa;
+					text-indent: -0.5vw;
+					font-family: gibbs, sans-serif;
+					font-weight: 900;
+					transition: color 500ms cubic-bezier(0.2, 1, 0.3, 1);
+				}
+
+				.prev,
+				.next {
+					opacity: 0;
+				}
+
+				.prev {
+					transform: translateY(-85%);
+				}
+
+				.next {
+					transform: translateY(-15%);
+				}
+
+				.prev .slide-title,
+				.next .slide-title {
+					-webkit-text-stroke: 1.5px #fafafa;
+					text-stroke: 1.5px #fafafa;
+					-webkit-text-fill-color: transparent;
+					text-fill-color: transparent;
+					color: transparent;
+				}
+
+				.scrolling > .slide {
+					transform: translateY(-50%);
+					opacity: 1;
 				}
 
 				@media screen and (max-width: 768px) {
-					.name {
-						bottom: 25%;
+					.clickAndDrag {
+						font-size: calc((11 / var(--sc)) * var(--fs));
 					}
 				}
 			`}</style>
