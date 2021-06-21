@@ -83,7 +83,9 @@
 	width: 0px;
 }
 
-html {
+html,
+body {
+	min-height: 100vh;
 	height: 100%;
 	/* touch-action: none; */
 	content-zooming: none;
@@ -111,7 +113,6 @@ body {
 	-webkit-text-size-adjust: 100%;
 	-webkit-font-smoothing: antialiased;
 	-webkit-tap-highlight-color: transparent;
-	overflow-y: scroll;
 }
 
 body > div {
