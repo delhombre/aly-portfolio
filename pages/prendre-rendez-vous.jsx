@@ -47,6 +47,8 @@ const Contact = () => {
 					background-color: var(--main-color);
 					color: var(--second-color);
 					font-size: calc((16 / var(--sc)) * var(--fs));
+					overscroll-behavior: contain;
+					overflow: hidden;
 				}
 
 				.section {
