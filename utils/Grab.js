@@ -34,7 +34,7 @@ class Grab {
 			// if (ev.type === "touchend") {
 			//   throw new Error(ev.targetTouches);
 			// }
-			ev.preventDefault();
+			// ev.preventDefault();
 			grabListener({
 				y: ev.targetTouches[0] ? ev.targetTouches[0].clientY : null,
 			});

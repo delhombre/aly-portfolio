@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import gallery3d from "../utils/3dgallery";
+import Layout from "./Layout";
 
 const GalleryPage = () => {
 	useEffect(() => {
@@ -8,6 +9,7 @@ const GalleryPage = () => {
 
 	return (
 		<>
+			<Layout />
 			<main>
 				<canvas id="view"></canvas>
 			</main>
