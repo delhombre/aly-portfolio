@@ -383,21 +383,6 @@ export default function gallery3d() {
 		// Get the corresponding rect, to store more data needed (it is a normal Object)
 		const rect = rects[index];
 
-		// const id = new Date().getTime();
-		// const len = galleryImages.length;
-
-		// if (imagesUrls[id]) {
-		// 	loadTextureForImage(index);
-		// } else {
-		// 	imagesUrls[id] = true;
-		// 	if (index > len - 1) {
-		// 		image.texture = PIXI.Texture.from(getRandomElementFrom(galleryImages));
-		// 	} else {
-		// 		image.texture = PIXI.Texture.from(galleryImages[index]);
-		// 	}
-		// 	rect.loaded = true;
-		// }
-
 		// Create a new AbortController, to abort fetch if needed
 		const { signal } = (rect.controller = new AbortController());
 		// Fetch the image
