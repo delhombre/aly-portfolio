@@ -1,0 +1,51 @@
+export const catalog = [
+	{
+		id: 1,
+		title: "Portrait",
+		slug: "portrait",
+		banner: "",
+		images: [],
+	},
+	{
+		id: 2,
+		title: "Lifestyle",
+		slug: "lifestyle",
+		banner: "",
+		images: [],
+	},
+	{
+		id: 3,
+		title: "Mariage",
+		slug: "mariage",
+		banner: "",
+		images: [],
+	},
+	{
+		id: 4,
+		title: "Produits",
+		slug: "produit",
+		banner: "",
+		images: [],
+	},
+	{
+		id: 5,
+		title: "Fashion",
+		slug: "fashion",
+		banner: "",
+		images: [],
+	},
+	{
+		id: 6,
+		title: "Artistique",
+		slug: "artistique",
+		banner: "",
+		images: [],
+	},
+	{
+		id: 7,
+		title: "Photos d'anniversaire",
+		slug: "photos-d'anniversaire",
+		banner: "",
+		images: [],
+	},
+];

@@ -1,8 +1,11 @@
 import { gsap } from "gsap";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Layout from "../components/Layout";
 
-const Catalogue = () => {
+const Catalogue = ({ catalogs }) => {
+	const router = useRouter();
+
 	useEffect(() => {
 		let xPos = 0;
 
@@ -20,7 +23,6 @@ const Catalogue = () => {
 		}
 
 		function dragStart(e) {
-			console.log(e);
 			if (e.touches) e.clientX = e.touches[0].clientX;
 			xPos = Math.round(e.clientX);
 			gsap.set(".ring", { cursor: "grabbing" });
@@ -52,7 +54,7 @@ const Catalogue = () => {
 			.timeline()
 			.set(".ring", { rotationY: 180, cursor: "grab" })
 			.set(".img", {
-				rotateY: (i) => i * -36,
+				rotateY: (i) => i * -52,
 				transformOrigin: "50% 50% 500px",
 				z: -500,
 				backgroundImage: (i) =>
@@ -95,16 +97,17 @@ const Catalogue = () => {
 			<div className="stage">
 				<div className="container">
 					<div className="ring">
-						<div className="img">Lorem ipsum dolor sit amet.</div>
-						<div className="img"></div>
-						<div className="img"></div>
-						<div className="img"></div>
-						<div className="img"></div>
-						<div className="img"></div>
-						<div className="img"></div>
-						<div className="img"></div>
-						<div className="img"></div>
-						<div className="img"></div>
+						{catalogs.map((catalog, index) => (
+							<div
+								key={index}
+								className="img"
+								onClick={() =>
+									router.push(`/catalogue/${encodeURIComponent(catalog.slug)}`)
+								}
+							>
+								<p className="title">{catalog.title}</p>
+							</div>
+						))}
 					</div>
 				</div>
 			</div>
@@ -133,16 +136,34 @@ const Catalogue = () => {
 				}
 				.container {
 					perspective: 2000px;
-					width: 300px;
-					height: 400px;
+					width: 350px;
+					height: 500px;
 					left: 50%;
 					top: 50%;
 					transform: translate(-50%, -50%);
 				}
 
+				.img {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+				}
+
+				.title {
+					color: var(--second-color);
+					text-transform: uppercase;
+					mix-blend-mode: difference;
+					font-size: calc((55 / var(--sc)) * var(--fs));
+					text-align: center;
+				}
+
 				@media screen and (max-width: 768px) {
 					.container {
 						perspective: 1000px;
+					}
+
+					.title {
+						font-size: calc((30 / var(--sc)) * var(--fs));
 					}
 				}
 
@@ -151,9 +172,26 @@ const Catalogue = () => {
 						perspective: 500px;
 					}
 				}
+
+				/* @media screen and (max-width: 375px) {
+					.title {
+						font-size: calc((30 / var(--sc)) * var(--fs));
+					}
+				} */
 			`}</style>
 		</>
 	);
 };
 
 export default Catalogue;
+
+export async function getStaticProps() {
+	const res = await fetch(process.env.API_URL + "/catalogue");
+	const catalogs = await res.json();
+
+	return {
+		props: {
+			catalogs,
+		}, // will be passed to the page component as props
+	};
+}
