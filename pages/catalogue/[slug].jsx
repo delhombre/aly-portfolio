@@ -81,6 +81,13 @@ export default function CatalogShow({ catalog }) {
 					overflow-x: hidden;
 				}
 
+				@media screen and (orientation: landscape) {
+					.container {
+						height: 100%;
+						top: 0;
+					}
+				}
+
 				.image-wrapper {
 					position: sticky;
 					top: 0;

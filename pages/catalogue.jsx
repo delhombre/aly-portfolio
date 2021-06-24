@@ -173,11 +173,11 @@ const Catalogue = ({ catalogs }) => {
 					}
 				}
 
-				/* @media screen and (max-width: 375px) {
+				@media screen and (min-width: 500px) and (max-width: 768px) {
 					.title {
-						font-size: calc((30 / var(--sc)) * var(--fs));
+						font-size: calc((19 / var(--sc)) * var(--fs));
 					}
-				} */
+				}
 			`}</style>
 		</>
 	);
