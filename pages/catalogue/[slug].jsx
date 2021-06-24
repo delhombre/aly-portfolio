@@ -133,18 +133,18 @@ export default function CatalogShow({ catalog }) {
 }
 
 // This function gets called at build time
-export async function getStaticPaths() {
-	const res = await fetch(process.env.API_URL + "/catalogue");
-	const catalogs = await res.json();
+// export async function getStaticPaths() {
+// 	const res = await fetch(process.env.API_URL + "/catalogue");
+// 	const catalogs = await res.json();
 
-	const paths = catalogs.map((catalog) => ({
-		params: { slug: encodeURIComponent(catalog.slug) },
-	}));
+// 	const paths = catalogs.map((catalog) => ({
+// 		params: { slug: encodeURIComponent(catalog.slug) },
+// 	}));
 
-	// We'll pre-render only these paths at build time.
-	// { fallback: false } means other routes should 404.
-	return { paths, fallback: false };
-}
+// 	// We'll pre-render only these paths at build time.
+// 	// { fallback: false } means other routes should 404.
+// 	return { paths, fallback: false };
+// }
 
 // This also gets called at build time
 // export async function getStaticProps({ params }) {
