@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Layout from "../components/Layout";
 
-const Catalogue = ({ catalogs }) => {
+const Catalogue = () => {
 	const router = useRouter();
 
 	useEffect(() => {
@@ -97,7 +97,7 @@ const Catalogue = ({ catalogs }) => {
 			<div className="stage">
 				<div className="container">
 					<div className="ring">
-						{catalogs.map((catalog, index) => (
+						{/* {catalogs.map((catalog, index) => (
 							<div
 								key={index}
 								className="img"
@@ -107,7 +107,7 @@ const Catalogue = ({ catalogs }) => {
 							>
 								<p className="title">{catalog.title}</p>
 							</div>
-						))}
+						))} */}
 					</div>
 				</div>
 			</div>
@@ -185,13 +185,13 @@ const Catalogue = ({ catalogs }) => {
 
 export default Catalogue;
 
-export async function getStaticProps() {
-	const res = await fetch(process.env.API_URL + "/catalogue");
-	const catalogs = await res.json();
+// export async function getStaticProps() {
+// 	const res = await fetch(process.env.API_URL + "/catalogue");
+// 	const catalogs = await res.json();
 
-	return {
-		props: {
-			catalogs,
-		}, // will be passed to the page component as props
-	};
-}
+// 	return {
+// 		props: {
+// 			catalogs,
+// 		}, // will be passed to the page component as props
+// 	};
+// }

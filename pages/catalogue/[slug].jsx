@@ -147,11 +147,11 @@ export async function getStaticPaths() {
 }
 
 // This also gets called at build time
-export async function getStaticProps({ params }) {
-	const res = await fetch(
-		`${process.env.API_URL}/catalogue/${decodeURIComponent(params.slug)}`
-	);
-	const catalog = await res.json();
+// export async function getStaticProps({ params }) {
+// 	const res = await fetch(
+// 		`${process.env.API_URL}/catalogue/${decodeURIComponent(params.slug)}`
+// 	);
+// 	const catalog = await res.json();
 
-	return { props: { catalog } };
-}
+// 	return { props: { catalog } };
+// }
