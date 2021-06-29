@@ -1,4 +1,4 @@
-export const catalog = [
+export const catalogs = [
 	{
 		id: 1,
 		title: "Portrait",

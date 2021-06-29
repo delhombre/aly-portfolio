@@ -1,7 +1,7 @@
-import { catalog } from "../../../utils/catalogDatas";
+import { catalogs } from "../../../utils/catalogDatas";
 
 export default function catalogHandler({ query: { slug } }, res) {
-	const filtered = catalog.filter((c) => c.slug === slug);
+	const filtered = catalogs.filter((c) => c.slug === slug);
 
 	if (filtered.length > 0) {
 		res.status(200).json(filtered[0]);
